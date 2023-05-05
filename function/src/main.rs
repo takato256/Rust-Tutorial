@@ -35,7 +35,7 @@ fn main(){
 }
 */
 
-
+/*
 fn main(){
     let y = {
         let x = 3;
@@ -44,3 +44,28 @@ fn main(){
 
     println!("The value of y is: {}", y);
 }
+*/
+
+// 戻り値のある関数
+/*
+fn five() -> i32{   // 戻り値の型がi32
+    5
+}
+
+fn main(){
+    let x = five(); // 関数の戻り値を使って変数を初期化
+
+    println!("The value of x is:{}", x);
+}
+*/
+
+fn main(){
+    let x = plus_one(5);
+
+    println!("The value of x is: {}", x);
+}
+
+fn plus_one(x: i32)-> i32{
+    x + 1   // セミコロンを付けない
+}
+
