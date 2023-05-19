@@ -64,6 +64,7 @@ fn main(){
 }
 */
 
+/*
 fn main(){
     let s = String::from("Hello");  // sがスコープに入る
 
@@ -84,3 +85,25 @@ fn takes_ownership(some_string: String){    // some_stringがスコープに入�
 fn makes_copy(some_integer: i32){   // some_integerがスコープに入る
     println!("{}", some_integer);
 }   // ここでsome_integerがスコープを抜ける。何も特別なことはない。
+*/
+
+fn main(){
+    let s1 = gives_ownership(); // give_ownershipは戻り値をs1にムーブする
+
+    let s2 = String::from("Hello"); // s2がスコープに入る
+
+    let s3 = takes_and_gives_back(s2);  // s2はtakes_and_gives_backにムーブされ、戻り値もs3にムーブされる
+
+}   // ここで、s3はスコープを抜け、ドロップされる。s2もスコープを抜けるが、ムーブされているので何も起きない。s1もスコープを抜け、ドロップされる。
+
+fn gives_ownership() -> String{ // gives_ownershipは、戻り値を呼び出した関数にムーブする
+
+    let some_string = String::from("Hello");    // some_stringがスコープに入る
+
+    some_string // some_stringが返され、呼び出し元関数にムーブされる
+}
+
+// takes_and_gives_backは、Stringを1つ受け取り、返す
+fn takes_and_gives_back(a_string: String) -> String{    // a_stringがスコープされる
+    a_string    // a_stringが返され、呼び出し元関数にムーブされる
+}
